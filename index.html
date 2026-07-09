@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom House Studio — Hair · Nails · Facials | Farmington Hills, MI</title>
+<meta name="description" content="Bloom House Studio is a full-service salon and spa in Farmington Hills, MI. Hair, nails, and facials — book your visit today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --rose-deep:#7A1F3D;
+  --rose-ink:#4A1226;
+  --coral:#EF6A8F;
+  --coral-soft:#F9AEC5;
+  --gold:#C9A227;
+  --gold-soft:#EDD9A3;
+  --blush:#FDF2F4;
+  --blush-deep:#F9E3E9;
+  --white:#FFFFFF;
+  --ink:#3A1E2B;
+  --radius:22px;
+  --shadow:0 18px 50px rgba(122,31,61,.14);
+  --display:'Unbounded',sans-serif;
+  --body:'Plus Jakarta Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--blush);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);color:var(--rose-deep);line-height:1.15}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ============ FLOATING BACKGROUND SHAPES ============ */
+.floaters{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.floater{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+.floater.f1{width:420px;height:420px;background:var(--coral-soft);top:-120px;left:-120px;animation:drift1 26s ease-in-out infinite}
+.floater.f2{width:340px;height:340px;background:var(--gold-soft);top:35%;right:-140px;animation:drift2 32s ease-in-out infinite}
+.floater.f3{width:300px;height:300px;background:var(--coral-soft);bottom:8%;left:6%;animation:drift3 29s ease-in-out infinite}
+.floater.f4{width:220px;height:220px;background:var(--gold-soft);top:12%;right:22%;animation:drift1 24s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,60px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,-40px) scale(.92)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-55px) scale(1.08)}}
+
+/* ============ NAV ============ */
+nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(20px,5vw,64px);
+  background:rgba(253,242,244,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(122,31,61,.08);
+}
+.logo{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--rose-deep);text-decoration:none;letter-spacing:.02em}
+.logo em{font-style:normal;color:var(--gold)}
+.nav-links{display:flex;gap:clamp(14px,3vw,34px);align-items:center;list-style:none}
+.nav-links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);transition:color .2s}
+.nav-links a:hover{color:var(--coral)}
+.btn{
+  display:inline-block;font-family:var(--body);font-weight:700;font-size:.95rem;
+  padding:13px 28px;border-radius:999px;text-decoration:none;cursor:pointer;border:none;
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn-primary{background:var(--rose-deep);color:var(--white);box-shadow:0 10px 26px rgba(122,31,61,.3)}
+.btn-primary:hover{transform:translateY(-2px);background:#8F2649;box-shadow:0 14px 32px rgba(122,31,61,.38)}
+.btn-gold{background:var(--gold);color:var(--rose-ink)}
+.btn-gold:hover{transform:translateY(-2px);background:#D8B23A}
+.nav-cta{padding:11px 22px;font-size:.88rem}
+.menu-toggle{display:none;background:none;border:none;font-size:1.7rem;color:var(--rose-deep);cursor:pointer}
+
+/* ============ HERO ============ */
+.hero{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);
+  align-items:center;
+  padding:clamp(50px,8vh,100px) clamp(20px,6vw,80px) clamp(60px,9vh,110px);
+  max-width:1280px;margin:0 auto;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:700;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--gold);border-radius:2px}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.7rem);font-weight:600;margin-bottom:22px}
+.hero h1 .accent{color:var(--coral)}
+.hero h1 .gold{color:var(--gold)}
+.hero p{font-size:1.08rem;max-width:46ch;margin-bottom:32px;color:#5C3648}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+.hero-note{display:flex;gap:26px;flex-wrap:wrap}
+.hero-note div{font-size:.86rem;font-weight:600;color:var(--rose-deep)}
+.hero-note span{display:block;font-family:var(--display);font-size:1.15rem;color:var(--gold)}
+
+/* signature: double morphing blob */
+.hero-visual{position:relative;justify-self:center;width:min(100%,480px);aspect-ratio:1/1.08}
+.blob-photo{
+  position:absolute;inset:0;overflow:hidden;
+  border-radius:58% 42% 44% 56% / 52% 55% 45% 48%;
+  animation:morph 12s ease-in-out infinite;
+  box-shadow:var(--shadow);
+}
+.blob-photo img{width:100%;height:100%;object-fit:cover}
+.blob-outline{
+  position:absolute;inset:-18px -14px 14px 18px;z-index:-1;
+  border:3px solid var(--gold);
+  border-radius:45% 55% 58% 42% / 48% 44% 56% 52%;
+  animation:morph 15s ease-in-out infinite reverse;
+  opacity:.85;
+}
+.blob-chip{
+  position:absolute;bottom:6%;left:-6%;
+  background:var(--white);border-radius:16px;padding:12px 18px;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;
+}
+.blob-chip .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);animation:pulse 2s infinite}
+.blob-chip strong{font-size:.85rem;color:var(--rose-deep)}
+.blob-chip small{display:block;font-size:.72rem;color:#8A5A6D}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.6}}
+@keyframes morph{
+  0%,100%{border-radius:58% 42% 44% 56% / 52% 55% 45% 48%}
+  33%{border-radius:44% 56% 58% 42% / 46% 42% 58% 54%}
+  66%{border-radius:52% 48% 40% 60% / 58% 50% 50% 42%}
+}
+
+/* ============ GOLD MARQUEE RIBBON ============ */
+.ribbon{
+  background:var(--gold);color:var(--rose-ink);
+  overflow:hidden;white-space:nowrap;padding:13px 0;
+  transform:rotate(-1.2deg);margin:0 -20px;
+  box-shadow:0 8px 24px rgba(201,162,39,.3);
+}
+.ribbon-track{display:inline-block;animation:scroll 28s linear infinite;font-family:var(--display);font-weight:500;font-size:.85rem;letter-spacing:.18em}
+.ribbon-track span{margin:0 22px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+section{padding:clamp(64px,9vh,110px) clamp(20px,6vw,80px);max-width:1280px;margin:0 auto}
+.section-head{max-width:640px;margin-bottom:clamp(36px,5vh,56px)}
+.section-head h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:600;margin-bottom:14px}
+.section-head p{color:#5C3648;font-size:1.02rem}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head.center .eyebrow{justify-content:center}
+.section-head.center .eyebrow::before{display:none}
+
+/* ============ SERVICES CARDS ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.svc-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 10px 30px rgba(122,31,61,.09);
+  transition:transform .25s,box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.svc-card .img-wrap{height:220px;overflow:hidden}
+.svc-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.svc-card:hover img{transform:scale(1.05)}
+.svc-body{padding:26px;display:flex;flex-direction:column;flex:1}
+.svc-body h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
+.svc-body p{font-size:.94rem;color:#5C3648;margin-bottom:18px;flex:1}
+.svc-body a{font-weight:700;font-size:.9rem;color:var(--coral);text-decoration:none}
+.svc-body a:hover{color:var(--rose-deep)}
+
+/* ============ GALLERY ============ */
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:235px; /* defined row height — keeps photos from being cut off */
+  gap:20px;
+}
+.gallery-grid .g-item{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(122,31,61,.1)}
+.gallery-grid .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-grid .g-item:hover img{transform:scale(1.06)}
+.g-item::after{ /* soft bottom gradient so tags stay readable */
+  content:"";position:absolute;inset:auto 0 0 0;height:42%;
+  background:linear-gradient(to top,rgba(58,30,43,.45),transparent);
+  pointer-events:none;
+}
+.g-tag{
+  position:absolute;bottom:12px;left:12px;z-index:1;
+  background:rgba(255,255,255,.94);color:var(--rose-deep);
+  font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;
+}
+/* explicit placement — every cell of the 4×2 grid is filled, no holes */
+.g-1{grid-column:1;grid-row:1/3}
+.g-2{grid-column:2;grid-row:1}
+.g-3{grid-column:3;grid-row:1}
+.g-4{grid-column:4;grid-row:1}
+.g-5{grid-column:2/4;grid-row:2}
+.g-6{grid-column:4;grid-row:2}
+
+/* ============ ABOUT ============ */
+.about{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,70px);align-items:center}
+.about-visual{position:relative}
+.about-visual img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;height:460px;object-fit:cover}
+.about-badge{
+  position:absolute;top:-18px;right:-14px;
+  background:var(--gold);color:var(--rose-ink);
+  font-family:var(--display);font-weight:600;font-size:.8rem;
+  padding:14px 20px;border-radius:14px;transform:rotate(3deg);
+  box-shadow:0 10px 26px rgba(201,162,39,.35);
+}
+.about ul{list-style:none;margin-top:22px}
+.about li{display:flex;gap:12px;margin-bottom:14px;font-weight:600;font-size:.98rem}
+.about li::before{content:"✦";color:var(--gold);flex-shrink:0}
+
+/* ============ TESTIMONIALS ============ */
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.quote{
+  background:var(--white);border-radius:var(--radius);padding:30px;
+  box-shadow:0 10px 30px rgba(122,31,61,.09);position:relative;
+}
+.quote::before{
+  content:"“";font-family:var(--display);font-size:3.4rem;color:var(--coral-soft);
+  position:absolute;top:8px;left:20px;line-height:1;
+}
+.quote p{margin-top:26px;font-size:.96rem;color:#4A2A3A;margin-bottom:18px}
+.quote footer{display:flex;align-items:center;gap:12px}
+.quote footer img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.quote footer strong{font-size:.9rem;color:var(--rose-deep)}
+.quote footer small{display:block;font-size:.78rem;color:#8A5A6D}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.85rem}
+
+/* ============ BOOKING ============ */
+#book{scroll-margin-top:80px}
+.book-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,50px);align-items:start}
+.picker,.book-form{
+  background:var(--white);border-radius:var(--radius);padding:clamp(24px,3vw,36px);
+  box-shadow:0 10px 30px rgba(122,31,61,.09);
+}
+.picker h3,.book-form h3{font-size:1.05rem;font-weight:600;margin-bottom:20px}
+.cat{margin-bottom:26px}
+.cat:last-child{margin-bottom:0}
+.cat-label{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--display);font-size:.82rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;
+}
+.cat-label::after{content:"";flex:1;height:1px;background:var(--blush-deep)}
+.svc-option{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;border-radius:14px;cursor:pointer;
+  transition:background .18s;user-select:none;
+}
+.svc-option:hover{background:var(--blush)}
+.svc-option input{position:absolute;opacity:0;pointer-events:none}
+.checkmark{
+  width:24px;height:24px;flex-shrink:0;border-radius:8px;
+  border:2px solid var(--coral-soft);background:var(--white);
+  display:grid;place-items:center;transition:all .18s;
+}
+.checkmark::after{content:"✓";color:var(--white);font-size:.85rem;font-weight:800;opacity:0;transform:scale(.4);transition:all .18s}
+.svc-option input:checked ~ .checkmark{background:var(--coral);border-color:var(--coral)}
+.svc-option input:checked ~ .checkmark::after{opacity:1;transform:scale(1)}
+.svc-option input:focus-visible ~ .checkmark{outline:3px solid var(--gold);outline-offset:2px}
+.svc-name{flex:1;font-weight:600;font-size:.96rem}
+.svc-name small{display:block;font-weight:500;font-size:.8rem;color:#8A5A6D}
+.svc-price{font-family:var(--display);font-weight:600;font-size:.92rem;color:var(--rose-deep)}
+
+.total-bar{
+  position:sticky;bottom:14px;margin-top:24px;
+  background:var(--rose-deep);color:var(--white);
+  border-radius:16px;padding:16px 22px;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 12px 30px rgba(122,31,61,.35);
+}
+.total-bar span{font-weight:600;font-size:.92rem}
+.total-bar strong{font-family:var(--display);font-size:1.35rem;color:var(--gold-soft)}
+
+.book-form label{display:block;font-weight:700;font-size:.85rem;margin:16px 0 6px;color:var(--rose-deep)}
+.book-form label:first-of-type{margin-top:0}
+.book-form input,.book-form select{
+  width:100%;padding:13px 15px;border-radius:12px;
+  border:2px solid var(--blush-deep);background:var(--blush);
+  font-family:var(--body);font-size:.95rem;color:var(--ink);
+  transition:border-color .18s;
+}
+.book-form input:focus,.book-form select:focus{outline:none;border-color:var(--coral)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.book-form .btn{width:100%;margin-top:22px}
+.form-hint{font-size:.8rem;color:#8A5A6D;margin-top:12px;text-align:center}
+.form-status{margin-top:14px;font-weight:600;font-size:.9rem;text-align:center;display:none}
+.form-status.ok{display:block;color:#2E7D4F}
+.form-status.err{display:block;color:#B3323B}
+
+/* ============ HOURS / CONTACT ============ */
+.hours-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,50px)}
+.hours-card{background:var(--white);border-radius:var(--radius);padding:clamp(26px,3vw,38px);box-shadow:0 10px 30px rgba(122,31,61,.09)}
+.hours-card h3{font-size:1.05rem;font-weight:600;margin-bottom:18px}
+.hours-list{list-style:none}
+.hours-list li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--blush-deep);font-size:.94rem}
+.hours-list li span:first-child{font-weight:600}
+.hours-list li span:last-child{color:var(--rose-deep);font-weight:600}
+.contact-line{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;font-size:.95rem}
+.contact-line .ic{color:var(--gold);font-size:1.1rem}
+.contact-line strong{display:block;font-size:.85rem;color:var(--rose-deep)}
+
+/* ============ FOOTER ============ */
+footer.site{
+  background:var(--rose-ink);color:var(--blush);
+  padding:50px clamp(20px,6vw,80px) 34px;margin-top:40px;
+}
+.foot-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot-inner .logo{color:var(--blush)}
+.foot-links{display:flex;gap:24px;list-style:none}
+.foot-links a{text-decoration:none;font-size:.88rem;opacity:.85}
+.foot-links a:hover{opacity:1;color:var(--gold-soft)}
+.foot-bottom{max-width:1280px;margin:26px auto 0;padding-top:20px;border-top:1px solid rgba(253,242,244,.15);font-size:.78rem;opacity:.6;text-align:center}
+
+/* ============ CHAT WIDGET ============ */
+.chat-fab{
+  position:fixed;bottom:22px;right:22px;z-index:90;
+  width:62px;height:62px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--rose-deep);color:var(--white);font-size:1.55rem;
+  box-shadow:0 14px 34px rgba(122,31,61,.4);
+  transition:transform .2s,background .2s;
+  display:grid;place-items:center;
+}
+.chat-fab:hover{transform:scale(1.08);background:#8F2649}
+.chat-panel{
+  position:fixed;bottom:96px;right:22px;z-index:90;
+  width:min(370px,calc(100vw - 32px));height:480px;
+  background:var(--white);border-radius:20px;box-shadow:0 24px 60px rgba(58,30,43,.3);
+  display:none;flex-direction:column;overflow:hidden;
+}
+.chat-panel.open{display:flex}
+.chat-head{
+  background:var(--rose-deep);color:var(--white);padding:16px 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.chat-head .avatar{width:38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:1.1rem}
+.chat-head strong{font-size:.95rem;display:block}
+.chat-head small{font-size:.75rem;opacity:.8}
+.chat-msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;background:var(--blush)}
+.msg{max-width:82%;padding:11px 15px;border-radius:16px;font-size:.9rem;line-height:1.5;white-space:pre-wrap}
+.msg.bot{background:var(--white);color:var(--ink);border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 4px 12px rgba(122,31,61,.08)}
+.msg.user{background:var(--coral);color:var(--white);border-bottom-right-radius:4px;align-self:flex-end}
+.msg.typing{color:#8A5A6D;font-style:italic}
+.chat-input{display:flex;gap:10px;padding:14px;border-top:1px solid var(--blush-deep);background:var(--white)}
+.chat-input input{
+  flex:1;padding:12px 15px;border-radius:999px;border:2px solid var(--blush-deep);
+  font-family:var(--body);font-size:.9rem;background:var(--blush);
+}
+.chat-input input:focus{outline:none;border-color:var(--coral)}
+.chat-input button{
+  width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--rose-deep);color:var(--white);font-size:1rem;flex-shrink:0;
+}
+.chat-input button:hover{background:#8F2649}
+
+/* ============ REVEAL ON SCROLL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;text-align:center;gap:44px}
+  .hero .eyebrow{justify-content:center}
+  .hero .eyebrow::before{display:none}
+  .hero p{margin-left:auto;margin-right:auto}
+  .hero-ctas,.hero-note{justify-content:center}
+  .hero-visual{width:min(100%,400px)}
+  .svc-grid,.quote-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .g-1{grid-column:1;grid-row:1/3}
+  .g-2{grid-column:2;grid-row:1}
+  .g-3{grid-column:2;grid-row:2}
+  .g-5{grid-column:1/3;grid-row:3}
+  .g-4{grid-column:1;grid-row:4}
+  .g-6{grid-column:2;grid-row:4}
+  .about,.book-wrap,.hours-wrap{grid-template-columns:1fr}
+  .about-visual img{height:340px}
+}
+@media (max-width:640px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;background:var(--blush);padding:20px;
+    border-bottom:1px solid rgba(122,31,61,.1);gap:18px;
+  }
+  .nav-links.open{display:flex}
+  .menu-toggle{display:block}
+  .svc-grid,.quote-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .gallery-grid{grid-auto-rows:165px;gap:14px}
+  .blob-chip{left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- floating background shapes -->
+<div class="floaters" aria-hidden="true">
+  <div class="floater f1"></div>
+  <div class="floater f2"></div>
+  <div class="floater f3"></div>
+  <div class="floater f4"></div>
+</div>
+
+<nav>
+  <a class="logo" href="#top">Bloom House <em>Studio</em></a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a class="btn btn-primary nav-cta" href="#book">Book now</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div>
+    <span class="eyebrow">Farmington Hills, Michigan</span>
+    <h1>Where you go to <span class="accent">bloom</span> — hair, nails <span class="gold">&amp;</span> glow.</h1>
+    <p>Bloom House Studio is a full-service salon and spa for people who want to leave feeling like the best version of themselves. Expert stylists, meticulous nail artists, and skin-first facials — all under one very pink roof.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#book">Book your visit</a>
+      <a class="btn btn-gold" href="#services">See services</a>
+    </div>
+    <div class="hero-note">
+      <div><span>7 days</span>Open every week</div>
+      <div><span>9a–7p</span>Daily hours</div>
+      <div><span>3-in-1</span>Hair · Nails · Facials</div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="blob-outline" aria-hidden="true"></div>
+    <div class="blob-photo">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80&auto=format&fit=crop" alt="Stylist finishing a soft blowout in a bright salon chair" loading="eager">
+    </div>
+    <div class="blob-chip">
+      <div class="dot" aria-hidden="true"></div>
+      <div><strong>Booking open</strong><small>Same-week spots available</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- gold marquee ribbon -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track" id="ribbonTrack">
+    <span>HAIR ✦ NAILS ✦ FACIALS ✦ BLOOM HOUSE STUDIO ✦ HAIR ✦ NAILS ✦ FACIALS ✦ BLOOM HOUSE STUDIO ✦</span><span>HAIR ✦ NAILS ✦ FACIALS ✦ BLOOM HOUSE STUDIO ✦ HAIR ✦ NAILS ✦ FACIALS ✦ BLOOM HOUSE STUDIO ✦</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="section-head reveal">
+    <span class="eyebrow">What we do</span>
+    <h2>Three studios in one house.</h2>
+    <p>Every chair, table, and treatment room has a specialist behind it. Pick one service or stack a whole self-care day.</p>
+  </div>
+  <div class="svc-grid">
+    <article class="svc-card reveal">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=900&q=80&auto=format&fit=crop" alt="Hair stylist sectioning a client's hair for color" loading="lazy"></div>
+      <div class="svc-body">
+        <h3>Hair</h3>
+        <p>Precision cuts, dimensional color, balayage, and blowouts that hold. Consultations are always free — come talk it through first.</p>
+        <a href="#book">Book hair →</a>
+      </div>
+    </article>
+    <article class="svc-card reveal">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=80&auto=format&fit=crop" alt="Manicurist painting a client's nails a soft pink" loading="lazy"></div>
+      <div class="svc-body">
+        <h3>Nails</h3>
+        <p>Classic and gel manicures, spa pedicures, and hand-painted nail art. Clean tools, careful hands, colors for days.</p>
+        <a href="#book">Book nails →</a>
+      </div>
+    </article>
+    <article class="svc-card reveal">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80&auto=format&fit=crop" alt="Esthetician applying a facial treatment to a relaxed client" loading="lazy"></div>
+      <div class="svc-body">
+        <h3>Facials</h3>
+        <p>Skin-first treatments matched to your skin, not a menu. From a quick glow-up to our signature Gold Radiance ritual.</p>
+        <a href="#book">Book facials →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="section-head center reveal">
+    <span class="eyebrow">The work</span>
+    <h2>Fresh out of the chair.</h2>
+    <p>A few recent favorites from the studio floor.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="g-item g-1"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=900&q=80&auto=format&fit=crop" alt="Long layered haircut with soft waves" loading="lazy"><span class="g-tag">Hair</span></div>
+    <div class="g-item g-2"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=900&q=80&auto=format&fit=crop" alt="Rows of nail polish bottles in pinks and reds" loading="lazy"><span class="g-tag">Nails</span></div>
+    <div class="g-item g-3"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&q=80&auto=format&fit=crop" alt="Makeup brushes and beauty products arranged on a table" loading="lazy"><span class="g-tag">The details</span></div>
+    <div class="g-item g-4"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=900&q=80&auto=format&fit=crop" alt="Client getting their hair washed at the salon basin" loading="lazy"><span class="g-tag">Wash</span></div>
+    <div class="g-item g-5"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=1200&q=80&auto=format&fit=crop" alt="Bright, modern salon interior with styling chairs" loading="lazy"><span class="g-tag">The studio</span></div>
+    <div class="g-item g-6"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=80&auto=format&fit=crop" alt="Client relaxing during a spa facial treatment" loading="lazy"><span class="g-tag">Facials</span></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="about">
+    <div class="about-visual reveal">
+      <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1000&q=80&auto=format&fit=crop" alt="The Bloom House Studio team's warm, plant-filled salon space" loading="lazy">
+      <div class="about-badge">Est. with love ✦ Michigan</div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Our story</span>
+      <h2>A studio that feels like your best friend's house.</h2>
+      <p style="margin-top:14px;color:#5C3648">Bloom House started with one chair, one mirror, and a simple idea: beauty appointments should be the easiest hour of your week. Today we're a full team of stylists, nail artists, and estheticians — but the house rule hasn't changed. You walk in, exhale, and let us take it from here.</p>
+      <ul>
+        <li>Free consultations before every color or first visit</li>
+        <li>Hospital-grade sanitation on every tool, every time</li>
+        <li>Cruelty-free product lines across hair, nails, and skin</li>
+        <li>Walk-ins welcome when the chairs are free</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="love">
+  <div class="section-head center reveal">
+    <span class="eyebrow">Client love</span>
+    <h2>Don't take our word for it.</h2>
+  </div>
+  <div class="quote-grid">
+    <article class="quote reveal">
+      <p>Got a balayage and gel mani in the same visit and walked out feeling brand new. The running-total booking on their site is genius — I knew my price before I ever walked in.</p>
+      <footer>
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        <div><strong>Maya R.</strong><small>Hair + nails regular</small><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </footer>
+    </article>
+    <article class="quote reveal">
+      <p>The Gold Radiance facial is worth every penny. My skin looked lit-from-within for two weeks. They actually listen to what your skin needs instead of upselling you.</p>
+      <footer>
+        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        <div><strong>Danielle K.</strong><small>Facial devotee</small><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </footer>
+    </article>
+    <article class="quote reveal">
+      <p>I've been chasing a good blowout since I moved to Farmington Hills. Found it. The whole place is pink and gold and gorgeous and the team treats you like family.</p>
+      <footer>
+        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&q=80&auto=format&fit=crop" alt="" loading="lazy">
+        <div><strong>Priya S.</strong><small>Blowout believer</small><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></div>
+      </footer>
+    </article>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section id="book">
+  <div class="section-head center reveal">
+    <span class="eyebrow">Book your visit</span>
+    <h2>Build your appointment.</h2>
+    <p>Check every service you want, watch the total update, then pick a day and time. We'll confirm by text or email within a few hours.</p>
+  </div>
+  <form class="book-wrap" id="bookForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <div class="picker reveal">
+      <h3>1. Choose your services</h3>
+
+      <div class="cat">
+        <div class="cat-label">Hair</div>
+        <label class="svc-option"><input type="checkbox" data-price="55" value="Signature Cut & Style"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Signature Cut &amp; Style<small>Consultation, cut, wash, and finish</small></span><span class="svc-price">$55</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="40" value="Blowout"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Blowout<small>Wash and professional style</small></span><span class="svc-price">$40</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="110" value="Full Color"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Full Color<small>Single-process, root to tip</small></span><span class="svc-price">$110</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="160" value="Balayage"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Balayage<small>Hand-painted dimension with gloss</small></span><span class="svc-price">$160</span></label>
+      </div>
+
+      <div class="cat">
+        <div class="cat-label">Nails</div>
+        <label class="svc-option"><input type="checkbox" data-price="30" value="Classic Manicure"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Classic Manicure<small>Shape, cuticle care, and polish</small></span><span class="svc-price">$30</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="45" value="Gel Manicure"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Gel Manicure<small>Chip-resistant, 2–3 week wear</small></span><span class="svc-price">$45</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="55" value="Spa Pedicure"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Spa Pedicure<small>Soak, scrub, massage, and polish</small></span><span class="svc-price">$55</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="20" value="Nail Art"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Nail Art<small>Hand-painted designs, per set</small></span><span class="svc-price">$20</span></label>
+      </div>
+
+      <div class="cat">
+        <div class="cat-label">Facials</div>
+        <label class="svc-option"><input type="checkbox" data-price="75" value="Glow Facial"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Glow Facial<small>Cleanse, exfoliate, mask, and hydrate</small></span><span class="svc-price">$75</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="85" value="Deep Cleanse Facial"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Deep Cleanse Facial<small>Extractions and purifying treatment</small></span><span class="svc-price">$85</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="90" value="Hydrating Facial"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Hydrating Facial<small>Moisture-barrier repair for dry skin</small></span><span class="svc-price">$90</span></label>
+        <label class="svc-option"><input type="checkbox" data-price="120" value="Gold Radiance Facial"><span class="checkmark" aria-hidden="true"></span><span class="svc-name">Gold Radiance Facial<small>Our signature 75-minute ritual</small></span><span class="svc-price">$120</span></label>
+      </div>
+
+      <div class="total-bar" aria-live="polite">
+        <span id="totalCount">No services selected</span>
+        <strong>Total: $<span id="totalAmount">0</span></strong>
+      </div>
+    </div>
+
+    <div class="book-form reveal">
+      <h3>2. Your details</h3>
+      <label for="fName">Name</label>
+      <input id="fName" type="text" name="name" placeholder="Your full name" required autocomplete="name">
+      <div class="form-row">
+        <div>
+          <label for="fPhone">Phone</label>
+          <input id="fPhone" type="tel" name="phone" placeholder="(248) 555-0123" required autocomplete="tel">
+        </div>
+        <div>
+          <label for="fEmail">Email</label>
+          <input id="fEmail" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="fDay">Preferred day</label>
+          <select id="fDay" name="preferred_day" required>
+            <option value="" disabled selected>Choose a day</option>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+        <div>
+          <label for="fTime">Preferred time</label>
+          <select id="fTime" name="preferred_time" required>
+            <option value="" disabled selected>Choose a time</option>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" name="services" id="servicesField">
+      <input type="hidden" name="total" id="totalField">
+      <button class="btn btn-primary" type="submit">Request appointment</button>
+      <p class="form-hint">Open daily 9am–7pm · We confirm every request personally</p>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </div>
+  </form>
+</section>
+
+<!-- ============ HOURS / CONTACT ============ -->
+<section id="hours">
+  <div class="section-head reveal">
+    <span class="eyebrow">Visit us</span>
+    <h2>Come say hi.</h2>
+  </div>
+  <div class="hours-wrap">
+    <div class="hours-card reveal">
+      <h3>Hours</h3>
+      <ul class="hours-list">
+        <li><span>Monday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Tuesday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Wednesday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Thursday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Friday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Saturday</span><span>9:00 AM – 7:00 PM</span></li>
+        <li><span>Sunday</span><span>9:00 AM – 7:00 PM</span></li>
+      </ul>
+    </div>
+    <div class="hours-card reveal">
+      <h3>Contact</h3>
+      <div class="contact-line"><span class="ic" aria-hidden="true">✦</span><div><strong>Address</strong>123 Orchard Lake Rd, Farmington Hills, MI 48334</div></div>
+      <div class="contact-line"><span class="ic" aria-hidden="true">✦</span><div><strong>Phone</strong>(248) 555-0198</div></div>
+      <div class="contact-line"><span class="ic" aria-hidden="true">✦</span><div><strong>Email</strong>hello@bloomhousestudio.com</div></div>
+      <div class="contact-line"><span class="ic" aria-hidden="true">✦</span><div><strong>Instagram</strong>@bloomhousestudio</div></div>
+      <a class="btn btn-gold" href="#book" style="margin-top:10px">Book your visit</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="foot-inner">
+    <a class="logo" href="#top">Bloom House <em>Studio</em></a>
+    <ul class="foot-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#hours">Hours</a></li>
+    </ul>
+  </div>
+  <div class="foot-bottom">© 2026 Bloom House Studio · Farmington Hills, MI · Demo site</div>
+</footer>
+
+<!-- ============ CHAT WIDGET ============ -->
+<button class="chat-fab" id="chatFab" aria-label="Chat with Bloom House Studio" aria-expanded="false">✿</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Bloom House Studio assistant">
+  <div class="chat-head">
+    <div class="avatar" aria-hidden="true">✿</div>
+    <div><strong>Bloom Assistant</strong><small>Ask about services, prices, or hours</small></div>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">Hi, welcome to Bloom House Studio! 🌸 I can help with services, pricing, hours, or picking the right treatment. What can I do for you?</div>
+  </div>
+  <div class="chat-input">
+    <input id="chatText" type="text" placeholder="Type a message…" aria-label="Your message">
+    <button id="chatSend" aria-label="Send message">➤</button>
+  </div>
+</div>
+
+<script>
+/* ---------- mobile menu ---------- */
+function toggleMenu(btn){
+  const links=document.getElementById('navLinks');
+  const open=links.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+}
+document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.remove('open');
+}));
+
+/* ---------- time dropdown: 9:00 AM – 6:30 PM in 30-min slots (open 9–7) ---------- */
+(function(){
+  const sel=document.getElementById('fTime');
+  for(let m=9*60;m<=18*60+30;m+=30){
+    const h=Math.floor(m/60),min=m%60;
+    const h12=((h+11)%12)+1, ap=h<12?'AM':'PM';
+    const label=h12+':'+String(min).padStart(2,'0')+' '+ap;
+    const o=document.createElement('option');o.textContent=label;sel.appendChild(o);
+  }
+})();
+
+/* ---------- service picker: live total ---------- */
+const boxes=[...document.querySelectorAll('.svc-option input[type=checkbox]')];
+const totalAmount=document.getElementById('totalAmount');
+const totalCount=document.getElementById('totalCount');
+const servicesField=document.getElementById('servicesField');
+const totalField=document.getElementById('totalField');
+
+function updateTotal(){
+  const chosen=boxes.filter(b=>b.checked);
+  const total=chosen.reduce((s,b)=>s+Number(b.dataset.price),0);
+  totalAmount.textContent=total;
+  totalCount.textContent=chosen.length===0?'No services selected'
+    :chosen.length+(chosen.length===1?' service selected':' services selected');
+  servicesField.value=chosen.map(b=>b.value+' ($'+b.dataset.price+')').join(', ');
+  totalField.value='$'+total;
+}
+boxes.forEach(b=>b.addEventListener('change',updateTotal));
+updateTotal();
+
+/* ---------- booking form: single Formspree submission via fetch ---------- */
+const form=document.getElementById('bookForm');
+const statusEl=document.getElementById('formStatus');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!boxes.some(b=>b.checked)){
+    statusEl.textContent='Please select at least one service above.';
+    statusEl.className='form-status err';
+    return;
+  }
+  const btn=form.querySelector('button[type=submit]');
+  btn.disabled=true;btn.textContent='Sending…';
+  try{
+    const res=await fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{'Accept':'application/json'}
+    });
+    if(res.ok){
+      statusEl.textContent='Request sent! We\'ll confirm your appointment shortly. 🌸';
+      statusEl.className='form-status ok';
+      form.reset();updateTotal();
+    }else{throw new Error();}
+  }catch{
+    statusEl.textContent='Something went wrong — please call us at (248) 555-0198 instead.';
+    statusEl.className='form-status err';
+  }
+  btn.disabled=false;btn.textContent='Request appointment';
+});
+
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- chat widget ---------- */
+const fab=document.getElementById('chatFab');
+const panel=document.getElementById('chatPanel');
+const msgs=document.getElementById('chatMsgs');
+const chatText=document.getElementById('chatText');
+const chatSend=document.getElementById('chatSend');
+let history=[];
+
+fab.addEventListener('click',()=>{
+  const open=panel.classList.toggle('open');
+  fab.setAttribute('aria-expanded',open);
+  fab.textContent=open?'✕':'✿';
+  if(open)chatText.focus();
+});
+
+function addMsg(text,cls){
+  const d=document.createElement('div');
+  d.className='msg '+cls;
+  d.textContent=text;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+  return d;
+}
+
+async function sendChat(){
+  const text=chatText.value.trim();
+  if(!text)return;
+  chatText.value='';
+  addMsg(text,'user');
+  history.push({role:'user',content:text});
+  const typing=addMsg('Bloom Assistant is typing…','bot typing');
+  chatSend.disabled=true;
+  try{
+    const res=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history})
+    });
+    const data=await res.json();
+    typing.remove();
+    if(data.reply){
+      addMsg(data.reply,'bot');
+      history.push({role:'assistant',content:data.reply});
+      if(history.length>20)history=history.slice(-20);
+    }else{
+      addMsg('Hmm, I couldn\'t reach the studio brain. Try again in a moment, or call (248) 555-0198.','bot');
+    }
+  }catch{
+    typing.remove();
+    addMsg('Hmm, I couldn\'t reach the studio brain. Try again in a moment, or call (248) 555-0198.','bot');
+  }
+  chatSend.disabled=false;
+  chatText.focus();
+}
+chatSend.addEventListener('click',sendChat);
+chatText.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
+</script>
+</body>
+</html>

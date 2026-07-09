@@ -1,0 +1,7 @@
+{
+  "name": "bloom-house-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bloom House Studio — full-service salon & spa demo site (hair, nails, facials) with AI chat assistant",
+  "type": "module"
+}
